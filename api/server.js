@@ -26,6 +26,12 @@ const games = [
     }
 ]
 
+// *** GET endpoint here: ***
+server.get('/games', (req, res) => {
+    res.status(200).json(games)
+})
+
+
 
 
 module.exports = server;
