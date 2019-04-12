@@ -9,7 +9,7 @@ describe('server.js', () => {
             expect(response.status).toBe(200);
           });
     })
-    it('should return { api: "Server is working" }', () => {
+        it('should return { api: "Server is working" }', () => {
         return request(server)
           .get('/')
           .then(res => {
@@ -17,7 +17,7 @@ describe('server.js', () => {
           });
       });
       // *** GET /games tests here: ***
-      describe('GET /games endpoint tests', () => {
+    describe('GET /games endpoint tests', () => {
         it('Should return status code 200(OK)', async () => {
             const response = await request(server).get('/games')
 
