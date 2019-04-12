@@ -34,7 +34,7 @@ Q: Test Driven Development is useful for creating a testing architecture that ca
 
 1. Mention three types of automated tests.
 
-Q: Unit testing; GUI-based testing; API driven testing
+Q: Unit testing; GUI-based testing(Snapshot testing); API driven testing(Integration testing)
 
 ## Project Set Up
 
