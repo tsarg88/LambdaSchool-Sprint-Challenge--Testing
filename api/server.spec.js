@@ -16,7 +16,7 @@ describe('server.js', () => {
             expect(res.body).toEqual({ message: 'Server is working' });
           });
       });
-      // *** GET /games test here: ***
+      // *** GET /games tests here: ***
       describe('GET /games endpoint tests', () => {
         it('Should return status code 200(OK)', async () => {
             const response = await request(server).get('/games')
@@ -51,6 +51,50 @@ describe('server.js', () => {
 
             expect(response.body).toEqual(expected);
             expect(Array.isArray(response.body)).toBe(true)
+        })
+    })
+    // *** POST /games tests here: ***
+    describe('POST /games endpoint tests', () => {
+        it('Should return a 422 code if the object being sent is incomplete', async () => {
+            const newGame = {
+                title: 'Sonic',
+                releaseYear: 1991
+            }
+            const response = await request(server).post('/games').send(newGame)
+
+            expect(response.status).toBe(422)
+        })
+        it('Should return status 201(Created) if the object has required fields', async () => {
+            const newGame = {
+                title: 'Sonic',
+                genre: 'Platform',
+                releaseYear: 1991
+            }
+            const response = await request(server).post('/games').send(newGame)
+
+            expect(response.status).toBe(201)
+        })
+        it('Should  return JSON', async () => {
+            const newGame = {
+                title: 'Sonic',
+                genre: 'Platform',
+                releaseYear: 1991
+            }
+
+            const response = await request(server).post('/games').send(newGame)
+
+            expect(response.type).toBe('application/json')
+        })
+        it('Should return a message with the game title indicating the post was successful', async () => {
+            const newGame = {
+                title: 'Sonic',
+                genre: 'Platform',
+                releaseYear: 1991
+            }
+
+            const response = await request(server).post('/games').send(newGame)
+
+            expect(response.body).toEqual({ message: 'Sonic added to games database.' })
         })
     })
 })
